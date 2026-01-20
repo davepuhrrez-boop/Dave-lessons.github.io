@@ -7,7 +7,7 @@ Welcome to my collection of interactive English language lessons! All lessons ar
 
 I'm an English teacher creating modern, engaging lessons for students of all levels. These lessons feature interactive vocabulary practice, grammar explanations, and real-world examples with authentic images.
 
-**Location:** Guadalupe, Nuevo León, Mexico  
+
 **Specialties:** Vocabulary, Grammar, Speaking Practice, Daily Routines
 
 ---
@@ -30,14 +30,6 @@ Master casual ways to talk about daily activities with modern, conversational En
 
 ---
 
-## 🎮 Features
-
-✅ Interactive vocabulary matching with images  
-✅ Grammar explanations with clear examples  
-✅ Real photos from Unsplash  
-✅ Mobile-friendly design (works on phone, tablet, desktop)  
-✅ No login required — just click and learn!  
-✅ Completely free — no ads, no sign-up needed
 
 ---
 
@@ -61,8 +53,6 @@ Have questions about a lesson? Found an error? Let me know:
 ## 📝 License
 
 These lessons are created by Dave. 
-- **Use freely** for personal learning
-- **Share with students** — no permission needed
 - **Attribution appreciated** but not required
 
 ---
