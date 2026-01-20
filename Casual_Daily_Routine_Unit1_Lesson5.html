@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1, Lesson 5: My Daily Routine - Casual Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f0f7 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0284c7 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        header .meta span {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        main {
+            padding: 40px 30px;
+        }
+
+        .intro-section {
+            background: #e8f0f7;
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .intro-section h2 {
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .intro-section p {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .slide {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #38bdf8;
+            page-break-inside: avoid;
+        }
+
+        .slide.slide-1 { border-left-color: #1e3a5f; }
+        .slide.slide-2 { border-left-color: #38bdf8; }
+        .slide.slide-3 { border-left-color: #0284c7; }
+        .slide.slide-4 { border-left-color: #38bdf8; }
+        .slide.slide-5 { border-left-color: #0284c7; }
+        .slide.slide-6 { border-left-color: #38bdf8; }
+        .slide.slide-7 { border-left-color: #1e3a5f; }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e8f0f7;
+        }
+
+        .slide-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1e3a5f;
+            min-width: 50px;
+        }
+
+        .slide-title {
+            flex: 1;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1e3a5f;
+            margin-left: 20px;
+        }
+
+        .slide-timing {
+            background: #1e3a5f;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .skill-markers {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .skill-marker {
+            background: #e8f0f7;
+            border: 2px solid #38bdf8;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+        }
+
+        .content-section h3 {
+            color: #1e3a5f;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .prompt-box {
+            background: #e8f0f7;
+            border: 2px solid #38bdf8;
+            padding: 18px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        .prompt-box-colored {
+            color: white;
+            font-weight: 500;
+        }
+
+        .prompt-box-colored.blue-bright {
+            background: #38bdf8;
+            border-color: #0284c7;
+        }
+
+        .prompt-box-colored.blue-dark {
+            background: #0284c7;
+            border-color: #38bdf8;
+        }
+
+        .prompt-box-colored strong {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .prompt-box-colored em {
+            font-size: 0.9em;
+            opacity: 0.95;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .code-block {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 18px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+            line-height: 1.8;
+            border-left: 4px solid #38bdf8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .activity-box {
+            background: #fff9e6;
+            border-left: 4px solid #f59e0b;
+            padding: 18px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .activity-box h4 {
+            color: #92400e;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .activity-box ul {
+            margin-left: 25px;
+        }
+
+        .activity-box li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #0f172a;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #e8f0f7 0%, #38bdf8 100%);
+            border: 3px solid #0284c7;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #1e3a5f;
+        }
+
+        .quote-highlight strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .quote-highlight em {
+            display: block;
+            font-size: 0.95em;
+            color: #0284c7;
+            margin-top: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        table th {
+            background: #1e3a5f;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e8f0f7;
+        }
+
+        table tr:hover {
+            background: #f8fafc;
+        }
+
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        footer h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .ready-badge {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .slide-title {
+                font-size: 1.3em;
+            }
+
+            .slide-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .slide-timing {
+                margin-top: 10px;
+            }
+
+            .code-block {
+                font-size: 0.85em;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Daily Routine</h1>
+            <div class="subtitle">Unit 1, Lesson 5 – Speaking & Conversation</div>
+            <div class="meta">                
+            </div>
+        </header>
+
+        <main>
+            <!-- WELCOME -->
+            <section class="intro-section">
+                <h2>Welcome to Lesson 5!</h2>
+                <p>In this casual lesson, you will <strong>talk about your daily routine</strong> in English. You'll share your opinions, learn about your classmates' habits, and discover how people around the world structure their days differently.</p>
+                <p style="margin-top: 15px; font-weight: 500; color: #1e3a5f;">🎯 <strong>What you will practice:</strong> Speaking naturally • Sharing opinions • Listening to others • Discussing cultural differences</p>
+            </section>
+
+            <!-- SLIDE 1 -->
+            <section class="slide slide-1">
+                <div class="slide-header">                    
+                    <div class="slide-title">Title & Objectives</div>
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">👂 LISTENING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>What You'll Learn Today</h3>
+                    <div class="activity-box">
+                        <ul>
+                            <li><strong>Practice natural conversation</strong> about daily activities</li>
+                            <li><strong>Share your personal routines</strong> and opinions fluently</li>
+                            <li><strong>Build speaking confidence</strong> through discussion</li>
+                            <li><strong>Learn about classmates'</strong> daily habits and cultural differences</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 20px; font-style: italic; color: #475569;">Your teacher will start by explaining what you'll do in each activity. Get ready to talk!</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 2 -->
+            <section class="slide slide-2">
+                <div class="slide-header">
+                    <div class="slide-title">And You Can Quote Me</div>
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">📖 READING</span>
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">✍️ WRITING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>Today's Quote</h3>
+                    <div class="quote-highlight">
+                        <strong>"The secret to success is doing the work."</strong>
+                        <em>— Unknown</em>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Discuss These Questions</h3>
+                    <div class="code-block">1. What does this quote mean to you?
+
+2. Do you agree that work/study is the key to success?
+
+3. How much time do you spend doing homework 
+   or studying every day?
+
+4. Share a quote about success or hard work 
+   that you know.</div>
+                </div>
+
+                <div class="activity-box">
+                    <h4>📝 What You Will Do:</h4>
+                    <ul>
+                        <li><strong>Write</strong> your personal response to ONE question</li>
+                        <li><strong>Share</strong> with a partner what you wrote</li>
+                        <li><strong>Listen</strong> to your partner's answer</li>
+                        <li><strong>Discuss</strong> if you agree or disagree</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE 3 -->
+            <section class="slide slide-3">
+                <div class="slide-header"
+                    <div class="slide-title">Speak Your Mind</div>
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">✍️ WRITING</span>
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">📖 READING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>Complete Your Opinion Sentence</h3>
+                    <p style="margin-bottom: 20px; font-style: italic; color: #475569;">Choose <strong>ONE</strong> of these sentences. Complete it with YOUR thoughts. There are no wrong answers!</p>
+                    
+                    <div class="prompt-box prompt-box-colored blue-bright">
+                        <strong>Option 1:</strong>
+                        My morning routine is _________ because _________.
+                        <em>Examples: fast / slow, stressful / relaxing, boring / interesting, important</em>
+                    </div>
+
+                    <div class="prompt-box prompt-box-colored blue-dark">
+                        <strong>Option 2:</strong>
+                        I believe the best time of day is _________ because I usually _________.
+                        <em>Examples: morning / afternoon / evening, exercise / relax / study</em>
+                    </div>
+
+                    <div class="prompt-box prompt-box-colored blue-bright">
+                        <strong>Option 3:</strong>
+                        The most important activity in my daily routine is _________ because _________.
+                        <em>Examples: breakfast / school / exercise / family time, it keeps me healthy / I love it</em>
+                    </div>
+
+                    <div class="prompt-box prompt-box-colored blue-dark">
+                        <strong>Option 4:</strong>
+                        If I had more time, I would like to _________ instead of _________.
+                        <em>Examples: sleep / exercise / read / spend time with family</em>
+                    </div>
+                </div>
+                <div class="activity-box">
+                    <h4>📝 What You Will Do:</h4>
+                    <ul>
+                        <li><strong>Choose ONE prompt</strong> that interests you most</li>
+                        <li><strong>Write</strong> your answer (2-3 words minimum per blank)</li>
+                        <li><strong>Read</strong> your answer to a partner (30 seconds)</li>
+                        <li><strong>Listen</strong> to your partner's answer</li>
+                        <li><strong>Ask</strong> a follow-up question like "Why?" or "Tell me more!"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE 4 -->
+            <section class="slide slide-4">
+                <div class="slide-header">
+                    <div class="slide-title">Imagine That</div>
+                <div class="skill-markers">
+                    <span class="skill-marker">✍️ WRITING</span>
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">👂 LISTENING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>Two Creative Scenarios</h3>
+                    <p style="margin-bottom: 20px; font-style: italic; color: #475569;">Your teacher will choose ONE scenario. Use your imagination!</p>
+                    
+                    <h4 style="color: #1e3a5f; font-size: 1.2em; margin-top: 20px; margin-bottom: 15px;">Scenario A: Your Perfect Day</h4>
+                    <div class="activity-box">
+                        <p style="margin-bottom: 12px;">Imagine you have a perfect day with <strong>no school, no homework, and no responsibilities</strong>. What would your ideal daily routine be? Describe what you would do from morning to night.</p>
+                        <h4 style="color: #92400e; margin-top: 15px;">What You Will Do:</h4>
+                        <ul>
+                            <li><strong>Write</strong> 4-5 sentences describing your perfect day</li>
+                            <li><strong>Share</strong> your description with a partner</li>
+                            <li><strong>Listen</strong> to your partner's perfect day</li>
+                            <li><strong>Discuss:</strong> How is your perfect day different from your real routine?</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: #1e3a5f; font-size: 1.2em; margin-top: 25px; margin-bottom: 15px;">Scenario B: Collaborative Storytelling</h4>
+                    <div class="activity-box">
+                        <p style="margin-bottom: 12px;">As a <strong>whole class</strong>, create an <strong>unusual or funny daily routine</strong> together! The teacher starts with one sentence, then each student adds ONE sentence to continue the story.</p>
+                        <h4 style="color: #92400e; margin-top: 15px;">What You Will Do:</h4>
+                        <ul>
+                            <li><strong>Listen</strong> to your teacher's opening sentence</li>
+                            <li><strong>Listen</strong> to each classmate's sentence</li>
+                            <li><strong>Contribute</strong> ONE silly sentence to the story</li>
+                            <li><strong>Laugh</strong> and enjoy the creativity together!</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5 -->
+            <section class="slide slide-5">
+                <div class="slide-header">
+                    <div class="slide-title">Answer Me This</div>
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">👂 LISTENING</span>
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">✍️ WRITING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>7 Quick Questions About YOUR Routine</h3>
+                    <p style="margin-bottom: 20px; font-style: italic; color: #475569;">Your teacher will read these questions. Think about YOUR answers and discuss with classmates!</p>
+                    
+                    <div class="code-block">1. What's the first thing you do when you wake up?
+
+2. Do you prefer morning showers or evening showers? 
+   Why?
+
+3. What's your favorite meal and when do you 
+   usually eat it?
+
+4. How many hours of sleep do you need 
+   to feel good?
+
+5. What's the most boring activity in your 
+   daily routine?
+
+6. Do you have time to exercise or play sports? 
+   How often?
+
+7. What time do you usually go to sleep 
+   on weekdays?</div>
+                </div>
+
+                <div class="activity-box">
+                    <h4>📝 What You Will Do:</h4>
+                    <ul>
+                        <li><strong>Listen</strong> to all 7 questions (your teacher reads them)</li>
+                        <li><strong>Join a small group</strong> (3-4 students)</li>
+                        <li><strong>Answer each question</strong> in your group (no writing needed!)</li>
+                        <li><strong>Speak</strong> about your answers—fast and honest!</li>
+                        <li><strong>Listen</strong> to what your classmates say</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE 6 -->
+            <section class="slide slide-6">
+                <div class="slide-header">
+                    <div class="slide-title">Culture Corner</div
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">👂 LISTENING</span>
+                    <span class="skill-marker">📖 READING</span>
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">✍️ WRITING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>Daily Routines Around the World 🌍</h3>
+                    
+                    <div class="prompt-box">
+                        <p><strong>Did you know?</strong> Daily routines are very different in different countries!</p>
+                        <ul style="margin-left: 20px; margin-top: 12px;">
+                            <li><strong>Spain & Mexico:</strong> People have a <strong>long lunch break</strong> at 1-2 p.m., go home, rest, then work until 7-8 p.m.</li>
+                            <li><strong>United States & Canada:</strong> People have a <strong>short lunch break</strong> (30 minutes to 1 hour)</li>
+                            <li><strong>Japan:</strong> Students wear uniforms, have <strong>structured schedules</strong>, and stay at school for club activities after class</li>
+                            <li><strong>Italy & Greece:</strong> People eat their <strong>main meal at lunch</strong> time, not in the evening</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Discuss These Questions</h3>
+                    <div class="code-block">1. In some countries, people have a long lunch break. 
+   How is this different from your country?
+
+2. Do you think a long lunch break is a good idea? 
+   Why or why not?
+
+3. What is a typical school day like in YOUR country?
+
+4. In your family or culture, do you have any 
+   special routines or traditions?
+
+5. How has your daily routine changed in the 
+   last 5 years?</div>
+                </div>
+
+                <div class="activity-box">
+                    <h4>📝 What You Will Do:</h4>
+                    <ul>
+                        <li><strong>Listen</strong> to your teacher explain different countries' routines</li>
+                        <li><strong>Discuss</strong> these questions with a partner or small group</li>
+                        <li><strong>Share</strong> about your own country's school day</li>
+                        <li><strong>Write</strong> 2-3 sentences about a special tradition in YOUR family</li>
+                        <li><strong>Learn</strong> how routines differ around the world!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE 7 -->
+            <section class="slide slide-7">
+                <div class="slide-header">
+                    <div class="slide-title">Wrap-Up & Reflection</div>
+                </div>
+
+                <div class="skill-markers">
+                    <span class="skill-marker">🗣️ SPEAKING</span>
+                    <span class="skill-marker">📖 READING</span>
+                </div>
+
+                <div class="content-section">
+                    <h3>What You Accomplished Today</h3>
+                    <div class="activity-box">
+                        <ul>
+                            <li>✓ <strong>Shared</strong> your daily routines and preferences</li>
+                            <li>✓ <strong>Practiced</strong> speaking naturally about your habits</li>
+                            <li>✓ <strong>Learned</strong> how different people structure their days</li>
+                            <li>✓ <strong>Explored</strong> cultural differences around the world</li>
+                            <li>✓ <strong>Built</strong> confidence speaking English!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Final Reflection Questions</h3>
+                    <p style="margin-bottom: 15px; font-style: italic; color: #475569;">Your teacher will ask these questions. Share your thinking!</p>
+                    
+                    <div class="code-block">1. What was the most interesting routine you heard 
+   from a classmate today?
+
+2. What's one new habit or activity you'd like to try 
+   based on what you learned?
+
+3. How will you change your routine to practice 
+   more English at home?</div>
+                </div>
+            </section>
+
+            <!-- TIPS FOR SUCCESS -->
+            <section style="margin-top: 40px; padding: 30px; background: #fff9e6; border-left: 4px solid #f59e0b; border-radius: 8px;">
+                <h3 style="color: #92400e; margin-bottom: 20px; font-size: 1.3em;">💡 Tips for Success</h3>
+                <ul style="margin-left: 25px;">
+                    <li style="margin-bottom: 12px;"><strong>Don't worry about perfection!</strong> This is conversational English. Natural speech is more important than perfect grammar.</li>
+                    <li style="margin-bottom: 12px;"><strong>Be honest in your answers.</strong> Your real opinions and experiences make discussions interesting!</li>
+                    <li style="margin-bottom: 12px;"><strong>Listen to your classmates.</strong> Learning how others live is just as important as sharing about yourself.</li>
+                    <li style="margin-bottom: 12px;"><strong>Ask questions!</strong> "Tell me more..." and "Why?" help conversations flow naturally.</li>
+                    <li><strong>Enjoy the process!</strong> This lesson is about building confidence and having fun speaking English together.</li>
+                </ul>
+            </section>
+
+        </main>
+
+        </div>
+</body>
+</html>
