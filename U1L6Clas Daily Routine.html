@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily Routine - Interactive Lesson</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --light-gray: #f8fafc;
+            --light-blue: #e8f0f7;
+            --accent-blue: #38bdf8;
+            --dark-accent: #0284c7;
+            --dark-text: #0f172a;
+            --secondary-gray: #475569;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --error-red: #ef4444;
+            --warning-orange: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .title-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #2d5a8c 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .title-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .title-section p {
+            font-size: 1.2rem;
+            color: var(--light-blue);
+            margin-bottom: 20px;
+        }
+
+        .objectives {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .objectives h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .objectives ul {
+            list-style: none;
+        }
+
+        .objectives li {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .objectives li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-fill {
+            background-color: var(--accent-blue);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--light-blue);
+        }
+
+        .section {
+            background-color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 12px;
+        }
+
+        .instruction {
+            background-color: var(--light-blue);
+            border-left: 4px solid var(--dark-accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: var(--dark-text);
+        }
+
+        .skill-markers {
+            color: var(--secondary-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* WRITING EXERCISE */
+        .exercise-item {
+            background-color: var(--light-gray);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .exercise-item p {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .blank-input input {
+            border: 2px dashed var(--accent-blue);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 1rem;
+            min-width: 120px;
+            background-color: var(--white);
+            transition: all 0.3s;
+            margin: 0 5px;
+        }
+
+        .blank-input input:focus {
+            outline: none;
+            border-color: var(--dark-accent);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+        }
+
+        .blank-input input.correct {
+            border-color: var(--success-green);
+            background-color: #f0fdf4;
+        }
+
+        .blank-input input.incorrect {
+            border-color: var(--error-red);
+            background-color: #fef2f2;
+        }
+
+        .feedback {
+            font-weight: 600;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .feedback.correct {
+            color: var(--success-green);
+        }
+
+        .feedback.incorrect {
+            color: var(--error-red);
+        }
+
+        .feedback.hint {
+            color: var(--warning-orange);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--dark-accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0369a1;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-gray);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #334155;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* AUDIO & LISTENING */
+        .audio-container {
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .audio-btn {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .audio-btn:hover {
+            background-color: var(--dark-accent);
+            transform: scale(1.1);
+        }
+
+        .audio-info {
+            font-size: 0.9rem;
+            color: var(--secondary-gray);
+        }
+
+        .transcript-toggle {
+            background-color: var(--white);
+            border: 1px solid var(--accent-blue);
+            color: var(--dark-accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .transcript-toggle:hover {
+            background-color: var(--light-blue);
+        }
+
+        .transcript-box {
+            background-color: var(--white);
+            border: 1px solid var(--accent-blue);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+            font-style: italic;
+            color: var(--secondary-gray);
+        }
+
+        .transcript-box.show {
+            display: block;
+        }
+
+        /* MULTIPLE CHOICE */
+        .options-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .option {
+            background-color: var(--white);
+            border: 2px solid var(--accent-blue);
+            padding: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            border-color: var(--dark-accent);
+            background-color: var(--light-blue);
+        }
+
+        .option.correct {
+            background-color: #f0fdf4;
+            border-color: var(--success-green);
+            color: var(--success-green);
+        }
+
+        .option.incorrect {
+            background-color: #fef2f2;
+            border-color: var(--error-red);
+            color: var(--error-red);
+        }
+
+        /* DRAG & DROP */
+        .drag-item {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: grab;
+            user-select: none;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.2s;
+            border: 2px solid var(--dark-accent);
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .drag-item:hover {
+            transform: scale(1.05);
+        }
+
+        .drag-item:active {
+            cursor: grabbing;
+        }
+
+        .drop-zone {
+            background-color: var(--light-gray);
+            border: 2px dashed var(--accent-blue);
+            padding: 15px;
+            border-radius: 6px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            color: var(--secondary-gray);
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+
+        .drop-zone.drag-over {
+            background-color: var(--light-blue);
+            border-color: var(--dark-accent);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+        }
+
+        .drop-zone.filled {
+            background-color: #f0fdf4;
+            border-color: var(--success-green);
+            color: var(--dark-text);
+        }
+
+        .sentence-builder {
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 2px solid var(--accent-blue);
+        }
+
+        .word-pool {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--light-blue);
+            margin-bottom: 15px;
+            min-height: 50px;
+        }
+
+        .word-pool h4 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .sorted-words {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-blue);
+            min-height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .word-token {
+            background-color: var(--white);
+            border: 1px solid var(--secondary-gray);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .word-token:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* SCORE BOX */
+        .score-box {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .score-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .score-box p {
+            font-size: 1.1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .grammar-box {
+            background-color: #f0f9ff;
+            border: 2px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .grammar-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .grammar-box p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .example {
+            background-color: var(--white);
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-left: 3px solid var(--dark-accent);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            color: var(--dark-text);
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--secondary-gray);
+            font-size: 0.85rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-blue);
+        }
+
+        @media (max-width: 768px) {
+            .title-section h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .options-group {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .audio-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="title-section">
+            <h1>My Daily Routine</h1>
+            <p>Unit 1, Lesson 5 – Present Simple & Action Verbs</p>
+            <div class="objectives">
+                <h3>In this lesson, you will:</h3>
+                <ul>
+                    <li>Learn daily routine action verbs in context</li>
+                    <li>Master Present Simple grammar (affirmative sentences)</li>
+                    <li>Practice error correction with verb forms</li>
+                    <li>Describe your personal daily routine accurately</li>
+                </ul>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressText">0/4 exercises completed</span>
+            </div>
+        </div>
+
+        <!-- VOCABULARY: INTERACTIVE PICTURE MATCH -->
+        <div class="section">
+            <h2>🖼️ Vocabulary: Interactive Picture Match</h2>
+            <div class="skill-markers">LISTENING | READING | WRITING</div>
+            <div class="instruction">
+                📌 Look at the pictures below. Drag each action verb to match it with the correct image. Get instant feedback!
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 25px 0;">
+                <!-- LEFT: VOCABULARY CARDS TO DRAG -->
+                <div>
+                    <h4 style="color: var(--primary-blue); margin-bottom: 15px;">📝 Action Verbs</h4>
+                    <div class="word-pool" id="vocabCards"></div>
+                </div>
+                
+                <!-- RIGHT: IMAGES TO DROP -->
+                <div>
+                    <h4 style="color: var(--primary-blue); margin-bottom: 15px;">🖼️ Pictures</h4>
+                    <div id="imageDropZones" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;"></div>
+                </div>
+            </div>
+
+            <div id="vocabFeedback" class="feedback" style="display: none;"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="checkVocabExercise()">✓ Check Vocabulary Matches</button>
+                <button class="btn btn-secondary" onclick="resetVocabExercise()">Reset</button>
+            </div>
+        </div>
+
+        <!-- EXERCISE 1: WRITING - FILL IN THE BLANK -->
+        <div class="section">
+            <h2>✍️ Exercise 1: Fill in the Blanks</h2>
+            <div class="skill-markers">WRITING | READING</div>
+            <div class="instruction">
+                Complete each sentence with the correct action verb: wake, take, brush, get, have, study, watch, or have (dinner). Check your answer after each sentence.
+            </div>
+
+            <div id="exercise1" class="exercise-set"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="checkAllExercise1()">✓ Check All Answers</button>
+                <button class="btn btn-secondary" onclick="resetExercise1()">Reset</button>
+            </div>
+        </div>
+
+        <!-- EXERCISE 2: LISTENING - AUDIO COMPREHENSION -->
+        <div class="section">
+            <h2>👂 Exercise 2: Listening Comprehension</h2>
+            <div class="skill-markers">LISTENING | READING</div>
+            <div class="instruction">
+                Listen to the audio. Then select the correct answer to the question below.
+            </div>
+
+            <div class="audio-container">
+                <button class="audio-btn" id="playAudioBtn" title="Play audio">▶</button>
+                <audio id="audioElement"></audio>
+                <span class="audio-info">Click to play (8 seconds)</span>
+                <button class="transcript-toggle" onclick="toggleTranscript()">📄 Show Transcript</button>
+            </div>
+
+            <div class="transcript-box" id="transcript">
+                <strong>Transcript:</strong> "Hi, I'm Maria. I wake up at 7 o'clock every morning. First, I take a shower and brush my teeth. Then I get dressed and have breakfast. I study English at school for three hours. In the evening, I watch TV and have dinner with my family. Finally, I go to bed at 10 p.m."
+            </div>
+
+            <div style="margin: 20px 0;">
+                <p style="font-weight: 600; margin-bottom: 15px;">Question: What time does Maria wake up?</p>
+                <div class="options-group" id="listeningOptions"></div>
+            </div>
+
+            <div id="listeningFeedback" class="feedback" style="display: none;"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="resetListeningExercise()">Reset</button>
+            </div>
+        </div>
+
+        <!-- EXERCISE 3: DRAG & DROP - MATCH WORDS -->
+        <div class="section">
+            <h2>🔀 Exercise 3: Match Words to Definitions</h2>
+            <div class="skill-markers">READING | VOCABULARY</div>
+            <div class="instruction">
+                Drag the action verbs to their correct definitions.
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 25px 0;">
+                <div>
+                    <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Action Verbs</h4>
+                    <div class="word-pool" id="dragItems"></div>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Definitions</h4>
+                    <div id="dropZones"></div>
+                </div>
+            </div>
+
+            <div id="matchingFeedback" class="feedback" style="display: none;"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="checkMatchingExercise()">✓ Check Answers</button>
+                <button class="btn btn-secondary" onclick="resetMatchingExercise()">Reset</button>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4: SENTENCE REORDERING -->
+        <div class="section">
+            <h2>🔤 Exercise 4: Reorder Words to Form Sentences</h2>
+            <div class="skill-markers">WRITING | GRAMMAR</div>
+            <div class="instruction">
+                Drag the words to create correct sentences about daily routines.
+            </div>
+
+            <div id="reorderingExercises"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="checkReorderingExercise()">✓ Check Answers</button>
+                <button class="btn btn-secondary" onclick="resetReorderingExercise()">Reset</button>
+            </div>
+        </div>
+
+        <!-- GRAMMAR REFERENCE -->
+        <div class="section">
+            <h2>📖 Grammar: Present Simple</h2>
+            <div class="grammar-box">
+                <h4>Present Simple - Affirmative Sentences</h4>
+                <p><strong>Use:</strong> The Present Simple describes actions and habits that happen regularly.</p>
+                
+                <p><strong>Structure:</strong></p>
+                <div class="example">Subject + Verb (base form) + Rest of sentence</div>
+
+                <p><strong>Examples with Daily Routine:</strong></p>
+                <div class="example">I wake up at 7 o'clock.</div>
+                <div class="example">She has breakfast at 8 a.m.</div>
+                <div class="example">They watch TV in the evening.</div>
+                <div class="example">He studies English every day.</div>
+
+                <p><strong>Key Points:</strong></p>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li>✓ Use base verb form with I, you, we, they</li>
+                    <li>✓ Add -s or -es with he, she, it</li>
+                    <li>✓ Examples: I work, he works | You study, she studies</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SPEAKING PRACTICE -->
+        <div class="section">
+            <h2>🗣️ Speaking Practice: My Daily Routine</h2>
+            <div class="instruction">
+                Using the Present Simple sentences you learned, describe your daily routine out loud or in writing. Include at least 8 activities.
+            </div>
+
+            <div class="grammar-box">
+                <p><strong>Example paragraph:</strong></p>
+                <div class="example">
+                    My name is Juan. I wake up at 7 o'clock in the morning. First, I have a shower and brush my teeth. Then I get dressed in my school uniform. I have breakfast with my family at 8 a.m. I study English and math at school from 9 a.m. to 3 p.m. In the afternoon, I play soccer with my friends. In the evening, I watch TV and relax. I have dinner with my family at 8 p.m. Finally, I go to bed at 10 p.m.
+                </div>
+            </div>
+
+            <div class="instruction" style="margin-top: 25px;">
+                🎯 Now it's your turn! Write or speak about your own daily routine using at least 8 Present Simple sentences.
+            </div>
+        </div>
+
+        <!-- FINAL SCORE -->
+        <div class="score-box" id="scoreBox" style="display: none;">
+            <h3>🎉 Lesson Complete!</h3>
+            <p id="finalScore">You scored 0/4 exercises correctly</p>
+            <button class="btn btn-secondary" style="margin-top: 20px;" onclick="location.reload()">Start Over</button>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>Lesson Summary:</strong> You have learned vocabulary for daily routines, Present Simple grammar, error correction, and practiced speaking about your own schedule.</p>
+            <p style="margin-top: 15px;">Great work! Keep practicing these sentences every day. 🌟</p>
+        </div>
+    </div>
+
+    <script>
+        // ===== DATA & STATE =====
+        const exerciseData = {
+            vocabulary: [
+                { verb: "Wake up", imageIdx: 0, audioText: "Wake up - to get out of bed in the morning" },
+                { verb: "Take a shower", imageIdx: 1, audioText: "Take a shower - to clean your body with water" },
+                { verb: "Brush my teeth", imageIdx: 2, audioText: "Brush my teeth - to clean teeth with a toothbrush" },
+                { verb: "Get dressed", imageIdx: 3, audioText: "Get dressed - to put on clothes" },
+                { verb: "Have breakfast", imageIdx: 4, audioText: "Have breakfast - to eat the first meal of the day" },
+                { verb: "Study English", imageIdx: 5, audioText: "Study English - to learn English" },
+                { verb: "Watch TV", imageIdx: 6, audioText: "Watch TV - to view television" },
+                { verb: "Have dinner", imageIdx: 7, audioText: "Have dinner - to eat the main meal" }
+            ],
+            images: [
+                { url: "https://images.unsplash.com/photo-1552650272-b8a34e21bc4b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2FrZSUyMHVwfGVufDB8fDB8fHww", alt: "Wake up", label: "1" },
+                { url: "https://plus.unsplash.com/premium_photo-1661370321899-e4539b738df6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGFrZSUyMHNob3dlcnxlbnwwfHwwfHx8MA%3D%3D", alt: "Take a shower", label: "2" },
+                { url: "https://images.unsplash.com/photo-1609840113564-ab4aba4956c4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Brush my teeth", label: "3" },
+                { url: "https://media.istockphoto.com/id/1331592526/photo/reflection-in-a-mirror-of-happy-woman-choosing-what-to-wear-at-home.webp?a=1&b=1&s=612x612&w=0&k=20&c=OVumI8bJd7l-_C20uqiMEV_NKtJy57qEdCvynHCWUvo=", alt: "Get dressed", label: "4" },
+                { url: "https://images.unsplash.com/photo-1639677342875-c9c2722c390a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGF2ZSUyMGJyZWFrZmFzdHxlbnwwfHwwfHx8MA%3D%3D", alt: "Have breakfast", label: "5" },
+                { url: "https://plus.unsplash.com/premium_photo-1661761077411-d50cba031848?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3R1ZHl8ZW58MHx8MHx8fDA%3D", alt: "Study English", label: "6" },
+                { url: "https://images.unsplash.com/photo-1692188071339-2825a8a997f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0Y2glMjB0dnxlbnwwfHwwfHx8MA%3D%3D", alt: "Watch TV", label: "7" },
+                { url: "https://plus.unsplash.com/premium_photo-1667823753660-3e74bd94b736?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGF2ZSUyMGRpbm5lcnxlbnwwfHwwfHx8MA%3D%3D", alt: "Have dinner", label: "8" }
+            ],
+            writing: [
+                { sentence: "I <input> up at 7 o'clock every morning.", answer: "wake", hint: "to get out of bed" },
+                { sentence: "After I wake up, I <input> a shower.", answer: "take", hint: "to have/use water to clean" },
+                { sentence: "Then I <input> my teeth in the bathroom.", answer: "brush", hint: "to clean with bristles" },
+                { sentence: "I <input> dressed in my school uniform.", answer: "get", hint: "to put on clothes" },
+                { sentence: "I <input> breakfast with my family.", answer: "have", hint: "to eat or consume" },
+                { sentence: "At school, I <input> English for two hours.", answer: "study", hint: "to learn" },
+                { sentence: "In the evening, I <input> TV.", answer: "watch", hint: "to view/observe" },
+                { sentence: "My family <input> dinner at 8 p.m.", answer: "have", hint: "to eat the main meal" }
+            ],
+            listening: {
+                options: ["7 o'clock", "8 o'clock", "9 o'clock", "10 o'clock"],
+                correct: 0
+            },
+            matching: [
+                { word: "wake up", definition: "to get out of bed in the morning" },
+                { word: "take a shower", definition: "to clean your body with water" },
+                { word: "brush teeth", definition: "to clean teeth with a brush" },
+                { word: "get dressed", definition: "to put on clothes" },
+                { word: "have breakfast", definition: "to eat the first meal of the day" },
+                { word: "study", definition: "to learn something in school" }
+            ],
+            reordering: [
+                { words: ["I", "wake", "up", "at", "7", "o'clock"], correct: "I wake up at 7 o'clock" },
+                { words: ["shower", "a", "take", "I"], correct: "I take a shower" },
+                { words: ["my", "brush", "I", "teeth"], correct: "I brush my teeth" },
+                { words: ["at", "have", "breakfast", "I", "8"], correct: "I have breakfast at 8" }
+            ]
+        };
+
+        let completedExercises = 0;
+        const state = {
+            vocabulary: new Array(exerciseData.vocabulary.length).fill(false),
+            exercise1: new Array(exerciseData.writing.length).fill(false),
+            exercise2: false,
+            exercise3: false,
+            exercise4: false
+        };
+
+        // ===== HELPER FUNCTIONS =====
+        function normalizeAnswer(str) {
+            return str.trim().toLowerCase();
+        }
+
+        function updateProgress() {
+            const vocabComplete = state.vocabulary.every(v => v === true);
+            const ex1Complete = state.exercise1.every(v => v === true);
+            const total = [vocabComplete, ex1Complete, state.exercise2, state.exercise3, state.exercise4].filter(v => v === true).length;
+            const percentage = (total * 20);
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `${total}/5 exercises completed`;
+        }
+
+        // ===== VOCABULARY: PICTURE MATCH =====
+        let vocabDraggedItem = null;
+
+        function initVocabulary() {
+            const vocabContainer = document.getElementById('vocabCards');
+            const shuffledVerbs = [...exerciseData.vocabulary].sort(() => Math.random() - 0.5);
+            
+            vocabContainer.innerHTML = shuffledVerbs.map((item, idx) => `
+                <div class="drag-item" draggable="true" data-verb="${item.verb}" data-correct-idx="${item.imageIdx}" ondragstart="startVocabDrag(event)" ondragend="endVocabDrag(event)" onclick="playVocabAudio('${item.audioText}')">
+                    🔊 ${item.verb}
+                </div>
+            `).join('');
+
+            const imageContainer = document.getElementById('imageDropZones');
+            imageContainer.innerHTML = exerciseData.images.map((img, idx) => `
+                <div class="drop-zone" style="aspect-ratio: 1; overflow: hidden; position: relative;" data-image-idx="${idx}" ondragover="allowDrop(event)" ondrop="dropVocab(event, ${idx})" ondragleave="dragLeave(event)">
+                    <img src="${img.url}" alt="${img.alt}" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold;">${img.label}</div>
+                    <div class="vocab-label" style="position: absolute; top: 10px; left: 10px; background: var(--accent-blue); color: white; padding: 8px 12px; border-radius: 4px; min-height: 30px; display: flex; align-items: center; font-weight: 600; max-width: 80%;"></div>
+                </div>
+            `).join('');
+        }
+
+        function startVocabDrag(event) {
+            vocabDraggedItem = event.target;
+            event.target.style.opacity = '0.5';
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function endVocabDrag(event) {
+            if (vocabDraggedItem) vocabDraggedItem.style.opacity = '1';
+        }
+
+        function dropVocab(event, imageIdx) {
+            event.preventDefault();
+            const dropZone = event.currentTarget;
+            dropZone.classList.remove('drag-over');
+
+            if (vocabDraggedItem) {
+                const correctIdx = parseInt(vocabDraggedItem.dataset['correct-idx']);
+                const verbText = vocabDraggedItem.dataset.verb;
+
+                if (correctIdx === imageIdx) {
+                    const label = dropZone.querySelector('.vocab-label');
+                    label.textContent = verbText;
+                    label.style.backgroundColor = 'var(--success-green)';
+                    vocabDraggedItem.remove();
+                    
+                    const vocabIdx = exerciseData.vocabulary.findIndex(v => v.verb === verbText);
+                    state.vocabulary[vocabIdx] = true;
+                } else {
+                    dropZone.style.animation = 'shake 0.3s';
+                    setTimeout(() => { dropZone.style.animation = ''; }, 300);
+                }
+            }
+        }
+
+        function playVocabAudio(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9;
+            speechSynthesis.cancel();
+            speechSynthesis.speak(utterance);
+        }
+
+        function checkVocabExercise() {
+            const allMatched = state.vocabulary.every(v => v === true);
+            const feedbackEl = document.getElementById('vocabFeedback');
+            feedbackEl.style.display = 'block';
+
+            if (allMatched) {
+                feedbackEl.classList.remove('incorrect');
+                feedbackEl.classList.add('correct');
+                feedbackEl.innerHTML = '✓ Perfect! All vocabulary matches are correct!';
+            } else {
+                const matched = state.vocabulary.filter(v => v === true).length;
+                feedbackEl.classList.remove('correct');
+                feedbackEl.classList.add('incorrect');
+                feedbackEl.innerHTML = `✗ ${exerciseData.vocabulary.length - matched} more words to match!`;
+            }
+            updateProgress();
+        }
+
+        function resetVocabExercise() {
+            initVocabulary();
+            document.getElementById('vocabFeedback').style.display = 'none';
+            state.vocabulary = new Array(exerciseData.vocabulary.length).fill(false);
+            updateProgress();
+        }
+
+        // ===== EXERCISE 1: WRITING =====
+        function initExercise1() {
+            const container = document.getElementById('exercise1');
+            container.innerHTML = exerciseData.writing.map((item, idx) => `
+                <div class="exercise-item">
+                    <p><strong>${idx + 1}.</strong> ${item.sentence.replace('<input>', `<span class="blank-input"><input type="text" id="input${idx}" class="writing-input" placeholder="Answer" data-index="${idx}"></span>`)}</p>
+                    <div id="feedback${idx}" class="feedback" style="display: none;"></div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.writing-input').forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') checkExercise1(parseInt(input.dataset.index));
+                });
+            });
+        }
+
+        function checkExercise1(idx) {
+            const input = document.getElementById(`input${idx}`);
+            const feedbackEl = document.getElementById(`feedback${idx}`);
+            const answer = normalizeAnswer(input.value);
+            const correct = normalizeAnswer(exerciseData.writing[idx].answer);
+
+            feedbackEl.style.display = 'block';
+
+            if (answer === correct) {
+                input.classList.remove('incorrect');
+                input.classList.add('correct');
+                feedbackEl.classList.remove('incorrect', 'hint');
+                feedbackEl.classList.add('correct');
+                feedbackEl.innerHTML = '✓ Correct!';
+                state.exercise1[idx] = true;
+            } else if (answer === '') {
+                feedbackEl.classList.add('hint');
+                feedbackEl.innerHTML = `💡 Hint: ${exerciseData.writing[idx].hint}`;
+            } else {
+                input.classList.add('incorrect');
+                feedbackEl.classList.remove('correct');
+                feedbackEl.classList.add('incorrect');
+                feedbackEl.innerHTML = '✗ Try again';
+            }
+            updateProgress();
+        }
+
+        function checkAllExercise1() {
+            exerciseData.writing.forEach((_, idx) => checkExercise1(idx));
+            const allCorrect = state.exercise1.every(v => v === true);
+            if (allCorrect) {
+                state.exercise1 = state.exercise1.map(() => true);
+            }
+        }
+
+        function resetExercise1() {
+            document.querySelectorAll('.writing-input').forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+            document.querySelectorAll('[id^="feedback"]').forEach(el => {
+                if (el.id.match(/^feedback\d+$/)) el.style.display = 'none';
+            });
+            state.exercise1 = new Array(exerciseData.writing.length).fill(false);
+            updateProgress();
+        }
+
+        // ===== EXERCISE 2: LISTENING =====
+        function initExercise2() {
+            const audioText = "Hi, I'm Maria. I wake up at 7 o'clock every morning. First, I take a shower and brush my teeth. Then I get dressed and have breakfast. I study English at school for three hours. In the evening, I watch TV and have dinner with my family. Finally, I go to bed at 10 p.m.";
+            
+            document.getElementById('playAudioBtn').addEventListener('click', () => {
+                const utterance = new SpeechSynthesisUtterance(audioText);
+                utterance.lang = 'en-US'
+                utterance.rate = 0.9;
+                speechSynthesis.cancel();
+                speechSynthesis.speak(utterance);
+            });
+
+            const optionsContainer = document.getElementById('listeningOptions');
+            optionsContainer.innerHTML = exerciseData.listening.options.map((opt, idx) => `
+                <div class="option" onclick="checkListeningAnswer(${idx})" style="cursor: pointer;">
+                    ${opt}
+                </div>
+            `).join('');
+        }
+
+        function checkListeningAnswer(idx) {
+            const options = document.querySelectorAll('#listeningOptions .option');
+            const feedbackEl = document.getElementById('listeningFeedback');
+            feedbackEl.style.display = 'block';
+
+            options.forEach((opt, i) => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+                if (i === exerciseData.listening.correct) {
+                    opt.classList.add('correct');
+                } else if (i === idx && i !== exerciseData.listening.correct) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (idx === exerciseData.listening.correct) {
+                feedbackEl.classList.remove('incorrect');
+                feedbackEl.classList.add('correct');
+                feedbackEl.innerHTML = '✓ Correct! Maria wakes up at 7 o\'clock.';
+                state.exercise2 = true;
+            } else {
+                feedbackEl.classList.remove('correct');
+                feedbackEl.classList.add('incorrect');
+                feedbackEl.innerHTML = '✗ Try again!';
+            }
+            updateProgress();
+        }
+
+        function resetListeningExercise() {
+            document.querySelectorAll('#listeningOptions .option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            document.getElementById('listeningFeedback').style.display = 'none';
+            state.exercise2 = false;
+            updateProgress();
+        }
+
+        function toggleTranscript() {
+            document.getElementById('transcript').classList.toggle('show');
+        }
+
+        // ===== EXERCISE 3: MATCHING =====
+        let draggedItem = null;
+
+        function initExercise3() {
+            const dragContainer = document.getElementById('dragItems');
+            dragContainer.innerHTML = exerciseData.matching.map((item, idx) => `
+                <div class="drag-item" draggable="true" data-word="${item.word}" data-index="${idx}" ondragstart="startDrag(event)" ondragend="endDrag(event)">
+                    ${item.word}
+                </div>
+            `).join('');
+
+            const dropContainer = document.getElementById('dropZones');
+            dropContainer.innerHTML = exerciseData.matching.map((item, idx) => `
+                <div class="drop-zone" data-index="${idx}" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
+                    ${item.definition}
+                </div>
+            `).join('');
+        }
+
+        function startDrag(event) {
+            draggedItem = event.target;
+            event.target.style.opacity = '0.6';
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function endDrag(event) {
+            if (draggedItem) draggedItem.style.opacity = '1';
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+            event.target.closest('.drop-zone').classList.add('drag-over');
+        }
+
+        function dragLeave(event) {
+            event.target.closest('.drop-zone').classList.remove('drag-over');
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const dropZone = event.target.closest('.drop-zone');
+            dropZone.classList.remove('drag-over');
+
+            if (draggedItem) {
+                const wordIdx = parseInt(draggedItem.dataset.index);
+                const defIdx = parseInt(dropZone.dataset.index);
+
+                if (wordIdx === defIdx) {
+                    dropZone.innerHTML = draggedItem.innerHTML;
+                    dropZone.classList.add('filled');
+                    draggedItem.remove();
+                }
+            }
+        }
+
+        function checkMatchingExercise() {
+            const allFilled = document.querySelectorAll('.drop-zone.filled').length === exerciseData.matching.length;
+            const feedbackEl = document.getElementById('matchingFeedback');
+            feedbackEl.style.display = 'block';
+
+            if (allFilled) {
+                feedbackEl.classList.remove('incorrect');
+                feedbackEl.classList.add('correct');
+                feedbackEl.innerHTML = '✓ Perfect! All matches are correct!';
+                state.exercise3 = true;
+            } else {
+                feedbackEl.classList.remove('correct');
+                feedbackEl.classList.add('incorrect');
+                feedbackEl.innerHTML = `✗ ${exerciseData.matching.length - document.querySelectorAll('.drop-zone.filled').length} more to match!`;
+            }
+            updateProgress();
+        }
+
+        function resetMatchingExercise() {
+            initExercise3();
+            document.getElementById('matchingFeedback').style.display = 'none';
+            state.exercise3 = false;
+            updateProgress();
+        }
+
+        // ===== EXERCISE 4: REORDERING =====
+        function initExercise4() {
+            const container = document.getElementById('reorderingExercises');
+            container.innerHTML = exerciseData.reordering.map((item, idx) => {
+                const shuffled = [...item.words].sort(() => Math.random() - 0.5);
+                return `
+                    <div class="sentence-builder" data-index="${idx}">
+                        <p><strong>Sentence ${idx + 1}:</strong></p>
+                        <div class="word-pool">
+                            <h4>Available Words</h4>
+                            <div id="wordPool${idx}">
+                                ${shuffled.map((word, wIdx) => `
+                                    <span class="drag-item" draggable="true" ondragstart="startWordDrag(event, ${idx})" ondragend="endWordDrag(event)" data-word="${word}" data-sentence="${idx}">${word}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="sorted-words" id="sortedWords${idx}" ondragover="allowDrop(event)" ondrop="dropWord(event, ${idx})" data-correct="${item.correct}">
+                            <span style="color: var(--secondary-gray); font-style: italic;">Drop words here</span>
+                        </div>
+                        <div id="reorderFeedback${idx}" class="feedback" style="display: none;"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        let draggedWord = null;
+        let draggedSentenceIdx = null;
+
+        function startWordDrag(event, sentenceIdx) {
+            draggedWord = event.target;
+            draggedSentenceIdx = sentenceIdx;
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function endWordDrag(event) {
+            draggedWord = null;
+        }
+
+        function dropWord(event, idx) {
+            event.preventDefault();
+            const sortedWordsEl = document.getElementById(`sortedWords${idx}`);
+
+            if (draggedWord && draggedWord.dataset.sentence == idx) {
+                const clone = draggedWord.cloneNode(true);
+                clone.draggable = true;
+                clone.ondragstart = (e) => startWordDrag(e, idx);
+                clone.ondragend = endWordDrag;
+
+                if (sortedWordsEl.children.length === 1 && sortedWordsEl.children[0].textContent.includes('Drop')) {
+                    sortedWordsEl.innerHTML = '';
+                }
+
+                sortedWordsEl.appendChild(clone);
+                draggedWord.remove();
+            }
+        }
+
+        function checkReorderingExercise() {
+            let allCorrect = true;
+            exerciseData.reordering.forEach((item, idx) => {
+                const sortedEl = document.getElementById(`sortedWords${idx}`);
+                const words = Array.from(sortedEl.querySelectorAll('.drag-item')).map(el => el.textContent.trim()).join(' ');
+                const feedbackEl = document.getElementById(`reorderFeedback${idx}`);
+                feedbackEl.style.display = 'block';
+
+                if (words === item.correct) {
+                    feedbackEl.classList.remove('incorrect');
+                    feedbackEl.classList.add('correct');
+                    feedbackEl.innerHTML = '✓ Correct!';
+                } else {
+                    feedbackEl.classList.remove('correct');
+                    feedbackEl.classList.add('incorrect');
+                    feedbackEl.innerHTML = '✗ Try again!';
+                    allCorrect = false;
+                }
+            });
+            state.exercise4 = allCorrect;
+            updateProgress();
+        }
+
+        function resetReorderingExercise() {
+            initExercise4();
+            state.exercise4 = false;
+            updateProgress();
+        }
+
+        // ===== INITIALIZATION =====
+        window.addEventListener('DOMContentLoaded', () => {
+            initVocabulary();
+            initExercise1();
+            initExercise2();
+            initExercise3();
+            initExercise4();
+            updateProgress();
+
+            const checkCompletion = setInterval(() => {
+                const vocabComplete = state.vocabulary.every(v => v === true);
+                const ex1Complete = state.exercise1.every(v => v === true);
+                if (vocabComplete && ex1Complete && state.exercise2 && state.exercise3 && state.exercise4) {
+                    document.getElementById('scoreBox').style.display = 'block';
+                    document.getElementById('finalScore').textContent = 'You completed all 5 exercises! 🌟';
+                    clearInterval(checkCompletion);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
