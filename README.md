@@ -28,6 +28,12 @@ Master casual ways to talk about daily activities with modern, conversational En
 
 👉 **[Start Lesson](https://davepuhrrez-boop.github.io/Dave-lessons.github.io/Casual_Daily_Routine_Unit1_Lesson5.html)**
 
+
+### **Casual Let's Go Shopping - Unit 1, Lesson 6**
+Learn to use common shopping vocabulary
+
+👉 **[Start Lesson]([https://davepuhrrez-boop.github.io/Dave-lessons.github.io/U1L6Cas Lets go Shopping](https://davepuhrrez-boop.github.io/Dave-lessons.github.io/U1L6Cas%20Lets%20go%20Shopping))**
+
 ---
 
 
