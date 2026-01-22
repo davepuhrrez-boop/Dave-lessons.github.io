@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Go Shopping! - Vocabulary Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+            --success: #95E1D3;
+            --danger: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .lesson-content {
+            padding: 40px;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 15px;
+        }
+
+        .slide h3 {
+            color: var(--secondary);
+            margin: 20px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        .objective-box {
+            background: var(--accent);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .objective-box ul {
+            margin-left: 20px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .objective-box li {
+            margin-bottom: 8px;
+        }
+
+        .quote-box {
+            background: #F0F9FF;
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--dark);
+        }
+
+        .question-box {
+            background: #F5F5F5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .question-box strong {
+            color: var(--primary);
+        }
+
+        .activity-card {
+            background: var(--light);
+            border: 2px solid var(--secondary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .activity-card h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vocab-card {
+            background: linear-gradient(135deg, var(--secondary) 0%, #45B7AA 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vocab-card .word {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .vocab-card .definition {
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        .vocab-card .price {
+            font-size: 1.2em;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF5252 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #45B7AA 100%);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .answer-box {
+            background: var(--success);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            border-left: 4px solid #27AE60;
+        }
+
+        .answer-box.show {
+            display: block;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--light);
+        }
+
+        .slide-indicator {
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .discussion-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .discussion-list li {
+            background: var(--light);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .culture-section {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFE8CC 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .culture-section strong {
+            color: var(--primary);
+        }
+
+        .wrap-up-box {
+            background: linear-gradient(135deg, var(--success) 0%, #7FDBCA 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .wrap-up-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .wrap-up-box ul {
+            text-align: left;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .wrap-up-box li {
+            margin: 8px 0;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛍️ Let's Go Shopping! 🛍️</h1>
+            <p>Vocabulary for Stores and Prices</p>
+        </div>
+
+        <div class="lesson-content">
+            <!-- SLIDE 1: Title & Objectives -->
+            <div class="slide active">
+                <h2>Let's go shopping!</h2>
+                <div class="objective-box">
+                    <h3>📚 Learning Objectives:</h3>
+                    <ul>
+                        <li><strong>Learn</strong> vocabulary for different types of stores</li>
+                        <li><strong>Understand</strong> common shopping phrases and prices</li>
+                        <li><strong>Practice</strong> speaking about shopping situations</li>
+                        <li><strong>Discuss</strong> cultural shopping differences around the world</li>
+                        <li><strong>Use</strong> new vocabulary in real-world conversations</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 20px; font-size: 1.05em; line-height: 1.8;">
+                    In this lesson, we'll explore the language of shopping! You'll learn vocabulary for different stores, discuss prices and bargains, 
+                    and engage in fun activities to practice your speaking skills. Get ready to become a confident shopper! 💳
+                </p>
+            </div>
+
+            <!-- SLIDE 2: "And You Can Quote Me" -->
+            <div class="slide">
+                <h2>📖 And You Can Quote Me...</h2>
+                <p style="margin-bottom: 20px; font-size: 1.05em;">Read this interesting shopping quote and discuss!</p>
+                
+                <div class="quote-box">
+                    "Shopping is a bit of a meditation. I go into the shops and look at things and sort of enjoy the environment." 
+                    <br>— A famous fashion designer
+                </div>
+
+                <h3>Discussion Questions:</h3>
+                <div class="question-box">
+                    <strong>❓  1:</strong> What do you think this quote means? Is shopping relaxing for you?
+                </div>
+                <div class="question-box">
+                    <strong>❓  2:</strong> Where do you like to go shopping? What's your favorite store?
+                </div>
+                <div class="question-box">
+                    <strong>❓  3:</strong> How often do you go shopping? Is it a necessity or a hobby for you?
+                </div>
+
+                <button class="btn btn-secondary" onclick="toggleAnswer(1)">💡 Share Your Thoughts</button>
+                <div class="answer-box" id="answer1">
+                    <strong>💭 Teaching Tip:</strong> "Every purchase is a small argument with ourselves about who we want to become—we're not buying things, we're buying versions of a future self we're not sure exists yet. - Dr. Margaret Chen"
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Shopping Vocabulary -->
+            <div class="slide">
+                <h2>🏪 Shopping Vocabulary</h2>
+                <p style="margin-bottom: 20px;">Key words and phrases for shopping situations:</p>
+
+                <div class="vocab-grid">
+                    <div class="vocab-card">
+                        <div class="word">Supermarket</div>
+                        <div class="definition">Large store selling food and groceries</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="word">Boutique</div>
+                        <div class="definition">Small shop selling fashionable clothing</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="word">Mall</div>
+                        <div class="definition">Large shopping center with many stores</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="word">Bargain</div>
+                        <div class="definition">Something bought at a lower price</div>
+                        <div class="price">💰 Great price!</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="word">Discount</div>
+                        <div class="definition">Reduction in the price of something</div>
+                        <div class="price">💰 Price: 20% OFF</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="word">Checkout</div>
+                        <div class="definition">Place where you pay for your items</div>
+                    </div>
+                </div>
+
+                <h3>Common Shopping Phrases:</h3>
+                <div class="activity-card">
+                    <p><strong>"How much does this cost?"</strong> - Asking about price</p>
+                    <p><strong>"Do you have a larger size?"</strong> - Asking about different options</p>
+                    <p><strong>"It's on sale!"</strong> - Announcing a discount</p>
+                    <p><strong>"I found a great bargain."</strong> - Talking about a good deal</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: "Speak Your Mind" -->
+            <div class="slide">
+                <h2>🗣️ Speak Your Mind!</h2>
+                <p style="margin-bottom: 20px;">Share your personal opinions about shopping:</p>
+
+                <div class="activity-card">
+                    <h4>📝 Reflection Activity</h4>
+                    <p style="margin-bottom: 15px;">Think about your shopping habits and answer these questions:</p>
+                    
+                    <div class="input-group">
+                        <label>1️⃣ What's your favorite thing to buy when you go shopping?</label>
+                        <input type="text" placeholder="Example: I love buying new books..." id="opinion1">
+                    </div>
+
+                    <div class="input-group">
+                        <label>2️⃣ Are you a bargain hunter or do you shop quickly?</label>
+                        <input type="text" placeholder="Example: I enjoy looking for discounts..." id="opinion2">
+                    </div>
+
+                    <div class="input-group">
+                        <label>3️⃣ Do you prefer shopping online or in physical stores? Why?</label>
+                        <textarea placeholder="Example: I prefer shopping in stores because..."></textarea>
+                    </div>  
+
+                    
+                </div>
+
+                <button class="btn btn-secondary" onclick="toggleAnswer(2)">💡 Speaking Tips</button>
+                <div class="answer-box" id="answer2">
+                    <strong>🎯 Tips for Better Speaking:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Give complete sentences, not one-word answers</li>
+                        <li>Use transition words like "because," "however," "in addition"</li>
+                        <li>Share personal examples to make your opinion more interesting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: "Imagine That" -->
+            <div class="slide">
+                <h2>🎭 Imagine That...</h2>
+                <p style="margin-bottom: 20px;">Create a collaborative shopping story! 🛒</p>
+
+                <div class="activity-card">
+                    <h4>Scenario Setup</h4>
+                    <p><strong>Imagine:</strong> You have $100 to spend at a mall. You need to buy one item for yourself and one gift for a friend.</p>
+                    <p style="margin-top: 15px;"><strong>🎯 Your Challenge:</strong> Create a story about your shopping adventure!</p>
+                </div>
+
+                <div class="activity-card">
+                    <h4>📖 Story Starters (Choose One or Combine):</h4>
+                    <ul class="discussion-list">
+                        <li>🛍️ <strong>"You arrive at the mall and see an amazing sale..."</strong></li>
+                        <li>🛍️ <strong>"A friend offers to help you find the perfect gift..."</strong></li>
+                        <li>🛍️ <strong>"You find something unexpected but perfect..."</strong></li>
+                        <li>🛍️ <strong>"The checkout process is exciting or unusual..."</strong></li>
+                    </ul>
+                </div>
+
+                <div class="input-group">
+                    <label><strong>✍️ Write Your Shopping Story:</strong></label>
+                    <textarea placeholder="Once upon a time, I went to the mall and..."></textarea>
+                </div>
+
+                
+                <button class="btn btn-secondary" onclick="toggleAnswer(3)">💡 Storytelling Tips</button>
+                <div class="answer-box" id="answer3">
+                    <strong>📝 Create a Great Story:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Use past tense: "I went," "I found," "I decided"</li>
+                        <li>Use adjectives to describe things: "bright," "colorful," "amazing"</li>
+                        <li>Include dialogue: "The clerk said, 'Can I help you?'"</li>
+                        <li>Have a beginning, middle, and end</li>
+                        <li>Make it creative and fun!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: "Answer Me This" -->
+            <div class="slide">
+                <h2>❓ Answer Me This!</h2>
+                <p style="margin-bottom: 20px;">Quick-response Q&A on everyday shopping topics:</p>
+
+                <div class="activity-card">
+                    <h4>Speed Round Questions 🚀</h4>
+                    <p style="margin-bottom: 15px;"><strong>Try to answer these questions quickly and honestly:</strong></p>
+
+                    <div class="question-box" style="background: #FFF8E1;">
+                        <strong>Q1:</strong> What's the most expensive thing you've ever bought?
+                    </div>
+
+                    <div class="question-box" style="background: #E3F2FD;">
+                        <strong>Q2:</strong> Have you ever returned something to a store? Why?
+                    </div>
+
+                    <div class="question-box" style="background: #F3E5F5;">
+                        <strong>Q3:</strong> Do you use coupons or look for promo codes? How much do you usually save?
+                    </div>
+
+                    <div class="question-box" style="background: #E8F5E9;">
+                        <strong>Q4:</strong> What would you buy if you won the lottery?
+                    </div>
+
+                    <div class="question-box" style="background: #FCE4EC;">
+                        <strong>Q5:</strong> What's the most important thing when choosing where to shop?
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><strong>📝 Your Answers (Write 3 that you answered):</strong></label>
+                    <textarea placeholder="Q1 answer: I bought...\nQ2 answer: Yes/No because..."></textarea>
+                </div>
+
+            </div>
+
+            <!-- SLIDE 7: "Culture Corner" -->
+            <div class="slide">
+                <h2>🌍 Culture Corner</h2>
+                <p style="margin-bottom: 20px;">Explore shopping culture around the world!</p>
+
+                <div class="culture-section">
+                    <h3>🇯🇵 Japan - Convenience Stores Everywhere</h3>
+                    <p>In Japan, <strong>convenience stores (konbini)</strong> are on almost every corner. They sell everything from food to books. 
+                    Shopping is quick and efficient, and stores are very clean. Many people shop there daily instead of large supermarkets.</p>
+                </div>
+
+                <div class="culture-section">
+                    <h3>🇮🇹 Italy - The Piazza Market Tradition</h3>
+                    <p>In many Italian towns, <strong>outdoor markets (piazza)</strong> are the heart of shopping culture. 
+                    People <strong>negotiate prices</strong> and chat with vendors. It's a social experience, not just buying things!</p>
+                </div>
+
+                <div class="culture-section">
+                    <h3>🇹🇭 Thailand - Floating Markets</h3>
+                    <p>Traditional <strong>floating markets</strong> in Thailand are located on water! Vendors sell from boats, and shoppers navigate by boat. 
+                    It's a unique cultural experience that's been around for centuries.</p>
+                </div>
+
+                <div class="culture-section">
+                    <h3>🇺🇸 USA - Black Friday & Cyber Monday</h3>
+                    <p>In the United States, <strong>Black Friday</strong> (day after Thanksgiving) and <strong>Cyber Monday</strong> 
+                    are major shopping events with huge discounts. People wait in line early morning for the best deals!</p>
+                </div>
+
+                <h3>📚 Your Culture & Shopping:</h3>
+                <div class="input-group">
+                    <label><strong>How is shopping different in your country? What's unique about your shopping culture?</strong></label>
+                    <textarea placeholder="In my country, shopping is..."></textarea>
+                </div>
+                
+            </div>
+
+            <!-- SLIDE 8: Wrap Up -->
+            <div class="slide">
+                <h2>🎉 Wrap Up!</h2>
+                
+                <div class="wrap-up-box">
+                    <h3>You Did It! 🌟</h3>
+                    <p>Great job completing this shopping vocabulary lesson!</p>
+                </div>
+
+                <h3 style="margin-top: 30px;">What We Learned Today:</h3>
+                <div class="activity-card">
+                    <ul class="discussion-list">
+                        <li>✅ <strong>Vocabulary:</strong> Names of stores (supermarket, boutique, mall)</li>
+                        <li>✅ <strong>Phrases:</strong> Common shopping expressions and questions</li>
+                        <li>✅ <strong>Prices:</strong> How to discuss bargains, discounts, and sales</li>
+                        <li>✅ <strong>Speaking:</strong> Shared opinions, told stories, and answered questions</li>
+                        <li>✅ <strong>Culture:</strong> Learned how different countries approach shopping</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top: 30px;">🏆 Challenge Yourself:</h3>
+                <div class="activity-card">
+                    <p><strong>Before our next lesson:</strong></p>
+                    <ul class="discussion-list">
+                        <li>🎯 Go shopping and practice asking "How much does this cost?" in English</li>
+                        <li>🎯 Describe 5 items you bought using adjectives (color, size, price)</li>
+                        <li>🎯 Find an interesting deal and explain why it's a bargain</li>
+                        <li>🎯 Research a famous market or shopping area in an English-speaking country</li>
+                    </ul>
+                </div>
+
+                <div class="wrap-up-box" style="margin-top: 30px; background: linear-gradient(135deg, var(--primary) 0%, #FF5252 100%);">
+                    <h3>Thank You! 🙏</h3>
+                    <p>Keep practicing your English through real-world shopping experiences!</p>
+                    <p style="margin-top: 15px; font-size: 1.1em; font-style: italic;">
+                        "Shopping is not just about buying things; it's about learning language and culture!" 🛍️✨
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation">
+                <button class="btn" onclick="previousSlide()">← Previous</button>
+                <div class="slide-indicator">
+                    <span id="current-slide">1</span> / <span id="total-slides">8</span>
+                </div>
+                <button class="btn" onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            if (n > totalSlides) {
+                currentSlide = totalSlides;
+            } else if (n < 1) {
+                currentSlide = 1;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide;
+            
+            // Scroll to top
+            document.querySelector('.lesson-content').scrollTop = 0;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        function toggleAnswer(questionNum) {
+            const answerBox = document.getElementById(`answer${questionNum}`);
+            answerBox.classList.toggle('show');
+        }
+
+   
+    
+        function captureCulture() {
+            alert('🌏 Fantastic contribution!\n\nYou explored cultural differences in shopping habits around the world.\n\nThis helps us understand diverse perspectives! 🌟');
+        }
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
